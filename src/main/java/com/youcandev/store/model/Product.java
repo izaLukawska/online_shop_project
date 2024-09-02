@@ -9,8 +9,8 @@ public class Product {
     private BigDecimal price;
     private int quantityInStock;
 
-    protected Product(ProductBuilder productBuilder){}
-
+    private Product() {
+    }
 
     public Long getId() {
         return id;
@@ -50,6 +50,42 @@ public class Product {
 
     public void setQuantityInStock(int quantityInStock) {
         this.quantityInStock = quantityInStock;
+    }
+    public static class ProductBuilder {
+        private Product product = new Product();
+
+        public static ProductBuilder builder() {
+            return new ProductBuilder();
+        }
+
+        public ProductBuilder id(Long id) {
+            product.setId(id);
+            return this;
+        }
+
+        public ProductBuilder name(String name) {
+            product.setName(name);
+            return this;
+        }
+
+        public ProductBuilder description(String description) {
+            product.setDescription(description);
+            return this;
+        }
+
+        public ProductBuilder price(BigDecimal price) {
+            product.setPrice(price);
+            return this;
+        }
+
+        public ProductBuilder quantityInStock(int quantity) {
+            product.setQuantityInStock(quantity);
+            return this;
+        }
+
+        public Product build() {
+            return product;
+        }
     }
 }
 
