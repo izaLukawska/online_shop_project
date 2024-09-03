@@ -13,16 +13,19 @@ public class CustomerRepository {
 
     private CustomerRepository() {}
     private static CustomerRepository getInstance(){
+
         return instance == null ? new CustomerRepository() : instance;
     }
-
     public Customer addCustomer(Customer customer){
-       return customers.put(customer.getId(), customer);
+        return customers.put(customer.getId(), customer);
     }
+
     public Optional<Customer> getCustomerById(Long id){
         return Optional.ofNullable(customers.get(id));
     }
+
     public List<Customer> getAllCustomers(){
+
         return customers.values().stream().toList();
     }
 

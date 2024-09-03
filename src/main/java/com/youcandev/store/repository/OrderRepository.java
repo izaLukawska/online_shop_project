@@ -16,18 +16,22 @@ public class OrderRepository {
     private OrderRepository() {}
 
     private static OrderRepository getInstance(){
+
         return instance == null ? new OrderRepository() : instance;
     }
 
     public Order createOrder(Order order){
         return orders.put(order.getId(), order);
     }
+
     public List<Order> getAllOrders(){
         return orders.values().stream().toList();
     }
+
     public Optional<Order> getOrderById(Long id){
         return Optional.ofNullable(orders.get(id));
     }
+
     public Optional<Order> deleteOrder(Long id){
         return Optional.ofNullable(orders.remove(id));
     }
