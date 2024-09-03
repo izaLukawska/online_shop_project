@@ -16,7 +16,6 @@ public class OrderRepository {
     private OrderRepository() {}
 
     private static OrderRepository getInstance(){
-
         return instance == null ? new OrderRepository() : instance;
     }
 
