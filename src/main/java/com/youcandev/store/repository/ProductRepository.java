@@ -13,6 +13,7 @@ public class ProductRepository {
     private static ProductRepository instance;
 
     private ProductRepository(){}
+
     private static ProductRepository getInstance() {
         return instance == null ? new ProductRepository() : instance;
     }

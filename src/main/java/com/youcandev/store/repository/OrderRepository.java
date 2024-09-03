@@ -10,7 +10,6 @@ import java.util.Optional;
 public class OrderRepository {
 
     private final Map<Long, Order> orders = new HashMap<>();
-
     private static OrderRepository instance;
 
     private OrderRepository() {}

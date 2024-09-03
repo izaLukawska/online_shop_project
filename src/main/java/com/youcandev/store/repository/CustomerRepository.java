@@ -12,10 +12,11 @@ public class CustomerRepository {
     private static CustomerRepository instance;
 
     private CustomerRepository() {}
-    private static CustomerRepository getInstance(){
 
+    private static CustomerRepository getInstance(){
         return instance == null ? new CustomerRepository() : instance;
     }
+
     public Customer addCustomer(Customer customer){
         return customers.put(customer.getId(), customer);
     }
@@ -25,7 +26,6 @@ public class CustomerRepository {
     }
 
     public List<Customer> getAllCustomers(){
-
         return customers.values().stream().toList();
     }
 
