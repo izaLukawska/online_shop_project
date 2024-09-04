@@ -7,13 +7,13 @@ public class Order {
 
     private Long id;
     private Customer customer;
-    private List<Product> prodcuts;
+    private List<Product> products;
     private OrderStatus status;
 
-    public Order(Long id, Customer customer, List<Product> prodcuts, OrderStatus status) {
+    public Order(Long id, Customer customer, List<Product> products, OrderStatus status) {
         this.id = id;
         this.customer = customer;
-        this.prodcuts = prodcuts;
+        this.products = products;
         this.status = OrderStatus.PENDING;
     }
 
@@ -33,12 +33,12 @@ public class Order {
         this.customer = customer;
     }
 
-    public List<Product> getProdcuts() {
-        return prodcuts;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProdcuts(List<Product> prodcuts) {
-        this.prodcuts = prodcuts;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public OrderStatus getStatus() {
@@ -50,7 +50,7 @@ public class Order {
     }
 
     public BigDecimal calculateTotalPrice(){
-        return prodcuts.stream().map(Product::getPrice)
+        return products.stream().map(Product::getPrice)
                 .reduce((currentAmount, sum) -> sum.add(currentAmount)).orElse(BigDecimal.ZERO);
 
     }
