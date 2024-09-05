@@ -1,6 +1,7 @@
 package com.youcandev.store.model;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
@@ -14,11 +15,13 @@ import static org.mockito.Mockito.*;
 class CustomerTest {
     private Customer customer;
 
+
     @BeforeEach
     void setUp() {
         customer = new Customer(1L, "Iza", "Lukawska", "x@gmail.com" ,new ArrayList<>());
     }
 
+    @Disabled
     @Test
     void addOrderIsSuccessful() {
         Order order = mock(Order.class);

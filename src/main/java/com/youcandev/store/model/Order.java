@@ -1,12 +1,12 @@
 package com.youcandev.store.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Data
 
 public class Order {
@@ -14,7 +14,7 @@ public class Order {
     private Long id;
     private Customer customer;
     private List<Product> products;
-    private OrderStatus status;
+    private OrderStatus status = OrderStatus.PENDING;
 
     public BigDecimal calculateTotalPrice(){
         return products.stream().map(Product::getPrice)
