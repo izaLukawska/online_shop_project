@@ -17,13 +17,13 @@ class OrderTest {
         var product = Product.builder().price(BigDecimal.valueOf(250)).build();
         var product1 = Product.builder().price(BigDecimal.valueOf(100)).build();
         var order = new Order();
+        order.setProducts(List.of(product, product1));
 
         //when
-        order.setProducts(List.of(product, product1));
         BigDecimal result = order.calculateTotalPrice();
         BigDecimal expectedResult = BigDecimal.valueOf(350);
 
         //then
-        assertEquals(BigDecimal.valueOf(350), result);
+        assertEquals(expectedResult, result);
     }
 }
