@@ -12,7 +12,7 @@ public class CustomerRepository {
 
     private CustomerRepository() {}
 
-    private static CustomerRepository getInstance(){
+    public static CustomerRepository getInstance(){
         return instance == null ? new CustomerRepository() : instance;
     }
 
