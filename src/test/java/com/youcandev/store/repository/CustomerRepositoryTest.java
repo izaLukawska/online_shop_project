@@ -31,7 +31,7 @@ public class CustomerRepositoryTest {
         });
     }
     @Test
-    void shouldReturnAddedCustomers(){
+    void shouldReturnCorrectSizeForAddedCustomers(){
         //given
         final int expectedSize = 1;
         customerRepository = CustomerRepository.getInstance();
