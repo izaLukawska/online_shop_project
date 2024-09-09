@@ -8,7 +8,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Data
-
 public class Order {
 
     private Long id;

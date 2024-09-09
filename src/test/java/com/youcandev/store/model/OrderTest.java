@@ -18,10 +18,10 @@ class OrderTest {
         var product1 = Product.builder().price(BigDecimal.valueOf(100)).build();
         var order = new Order();
         order.setProducts(List.of(product, product1));
+        BigDecimal expectedResult = BigDecimal.valueOf(350);
 
         //when
         BigDecimal result = order.calculateTotalPrice();
-        BigDecimal expectedResult = BigDecimal.valueOf(350);
 
         //then
         assertEquals(expectedResult, result);

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 public class CustomerRepository {
     private final Map<Long, Customer> customers = new HashMap<>();
     private static CustomerRepository instance;
