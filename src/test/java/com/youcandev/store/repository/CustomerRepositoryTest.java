@@ -3,6 +3,7 @@ package com.youcandev.store.repository;
 import com.youcandev.store.model.Customer;
 
 import com.youcandev.store.model.Order;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -11,15 +12,15 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CustomerRepositoryTest {
+class CustomerRepositoryTest {
 
-    private CustomerRepository customerRepository;
-    private static final Customer customer = new Customer(1L, "Iza", "Lukawska", "iza@gmail.com", List.of(Mockito.mock(Order.class)));
+    private final CustomerRepository customerRepository = CustomerRepository.getInstance();
+    private static final Customer CUSTOMER = new Customer(1L, "Iza", "Lukawska", "iza@gmail.com", List.of(Mockito.mock(Order.class)));
+
 
     @Test
     void shouldReturnEmptyCollectionIfNoUserAdded(){
         //given
-        customerRepository = CustomerRepository.getInstance();
 
         //when
         List<Customer> customers = customerRepository.getAllCustomers();
@@ -30,27 +31,42 @@ public class CustomerRepositoryTest {
             assertTrue(customers.isEmpty());
         });
     }
+
+    @Test
+    void shouldReturnAddedCustomers(){
+        //given
+        int expectedSize = 1;
+
+        //when
+        customerRepository.addCustomer(CUSTOMER);
+        List<Customer> result = customerRepository.getAllCustomers();
+
+        //then
+        assertAll(() ->{
+            assertFalse(result.isEmpty());
+            assertEquals(expectedSize,1);
+        });
+    }
     @Test
     void shouldReturnCorrectSizeForAddedCustomers(){
         //given
         final int expectedSize = 1;
-        customerRepository = CustomerRepository.getInstance();
 
         //when
-        customerRepository.addCustomer(customer);
+        customerRepository.addCustomer(CUSTOMER);
+        List<Customer> result = customerRepository.getAllCustomers();
 
         //then
-        assertEquals(expectedSize, customerRepository.getAllCustomers().size());
+        assertEquals(expectedSize, result.size());
     }
 
     @Test
     void shouldDeleteAddedCustomerById(){
         //given
-        customerRepository = CustomerRepository.getInstance();
-        customerRepository.addCustomer(customer);
+        customerRepository.addCustomer(CUSTOMER);
 
         //when
-        customerRepository.deleteCustomer(customer.getId());
+        customerRepository.deleteCustomer(CUSTOMER.getId());
 
         //then
         assertTrue(customerRepository.getAllCustomers().isEmpty());
@@ -59,14 +75,12 @@ public class CustomerRepositoryTest {
     @Test
     void shouldReturnEmptyOptionalIfNoSuchCustomerExists(){
         //given
-        customerRepository = CustomerRepository.getInstance();
-        Long expectedId = 1L;
-        Optional<Customer> customer;
+        Long givenId = 1L;
 
         //when
-        customer = customerRepository.getCustomerById(expectedId);
+        Optional<Customer> result = customerRepository.deleteCustomer(givenId);
 
         //then
-        assertTrue(customer.isEmpty());
+        assertTrue(result.isEmpty());
     }
 }
